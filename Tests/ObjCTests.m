@@ -28,24 +28,24 @@
     NSData* data = [TestUtils randomDataWithCount:128];
     NSBundle* bundle = [NSBundle bundleForClass:[TestUtils class]];
     
-    PublicKey* pub;
-    pub = [[PublicKey alloc] initWithData:data error:nil];
-    pub = [[PublicKey alloc] initWithPemEncoded:@"test" error:nil];
-    pub = [[PublicKey alloc] initWithBase64Encoded:@"test" error:nil];
-    pub = [[PublicKey alloc] initWithPemNamed:@"test" in: bundle error:nil];
-    pub = [[PublicKey alloc] initWithDerNamed:@"test" in: bundle error:nil];
+    SwiftyRSA.PublicKey* pub;
+    pub = [[SwiftyRSA.PublicKey alloc] initWithData:data error:nil];
+    pub = [[SwiftyRSA.PublicKey alloc] initWithPemEncoded:@"test" error:nil];
+    pub = [[SwiftyRSA.PublicKey alloc] initWithBase64Encoded:@"test" error:nil];
+    pub = [[SwiftyRSA.PublicKey alloc] initWithPemNamed:@"test" in: bundle error:nil];
+    pub = [[SwiftyRSA.PublicKey alloc] initWithDerNamed:@"test" in: bundle error:nil];
     
     [pub reference];
     [pub dataAndReturnError:nil];
     [pub originalData];
-    [PublicKey publicKeysWithPemEncoded:@"test"];
+    [SwiftyRSA.PublicKey publicKeysWithPemEncoded:@"test"];
     
-    PrivateKey* priv;
-    priv = [[PrivateKey alloc] initWithData:data error:nil];
-    priv = [[PrivateKey alloc] initWithPemEncoded:@"test" error:nil];
-    priv = [[PrivateKey alloc] initWithPemNamed:@"test" in: bundle error:nil];
-    priv = [[PrivateKey alloc] initWithDerNamed:@"test" in: bundle error:nil];
-    priv = [[PrivateKey alloc] initWithBase64Encoded:@"test" error:nil];
+    SwiftyRSA.PrivateKey* priv;
+    priv = [[SwiftyRSA.PrivateKey alloc] initWithData:data error:nil];
+    priv = [[SwiftyRSA.PrivateKey alloc] initWithPemEncoded:@"test" error:nil];
+    priv = [[SwiftyRSA.PrivateKey alloc] initWithPemNamed:@"test" in: bundle error:nil];
+    priv = [[SwiftyRSA.PrivateKey alloc] initWithDerNamed:@"test" in: bundle error:nil];
+    priv = [[SwiftyRSA.PrivateKey alloc] initWithBase64Encoded:@"test" error:nil];
     [priv reference];
     [priv dataAndReturnError:nil];
     [priv originalData];
@@ -64,8 +64,8 @@
     encrypted = [[EncryptedMessage alloc] initWithData:data];
     
     {
-        PublicKey* publicKey = [TestUtils publicKeyWithName:@"swiftyrsa-public" error:nil];
-        PrivateKey* privateKey = [TestUtils privateKeyWithName:@"swiftyrsa-private" error:nil];
+        SwiftyRSA.PublicKey* publicKey = [TestUtils publicKeyWithName:@"swiftyrsa-public" error:nil];
+        SwiftyRSA.PrivateKey* privateKey = [TestUtils privateKeyWithName:@"swiftyrsa-private" error:nil];
         Signature* signature = [[Signature alloc] initWithData:data];
         ClearMessage* clearMessage = [[ClearMessage alloc] initWithData:data];
         [clearMessage data];
@@ -76,7 +76,7 @@
     }
     
     {
-        PrivateKey* privateKey = [TestUtils privateKeyWithName:@"swiftyrsa-private" error:nil];
+        SwiftyRSA.PrivateKey* privateKey = [TestUtils privateKeyWithName:@"swiftyrsa-private" error:nil];
         EncryptedMessage* encryptedMessage = [[EncryptedMessage alloc] initWithData:data];
         [encryptedMessage data];
         [encryptedMessage base64String];
